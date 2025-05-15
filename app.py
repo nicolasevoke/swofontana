@@ -46,7 +46,7 @@ def get_stock_warehouse_orderpoint():
                 "kwargs": {
                     "offset": offset,
                     "limit": limit,
-                    "fields": ["id", "product_id", "location_id", "product_min_qty", "product_max_qty"]
+                    "fields": ["id", "product_id", "location_id", "warehouse_id", "product_min_qty", "product_max_qty", "qty_multiple", "qty_to_order"]
                 }
             }
         }
