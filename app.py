@@ -31,7 +31,10 @@ def get_stock_warehouse_orderpoint():
         limit = int(request.args.get("limit", 500))
 
         session_id = get_session_id()
-        headers = {"Content-Type": "application/json", "Cookie": f"session_id={session_id}"}
+        headers = {
+            "Content-Type": "application/json",
+            "Cookie": f"session_id={session_id}"
+        }
 
         payload = {
             "jsonrpc": "2.0",
@@ -42,7 +45,8 @@ def get_stock_warehouse_orderpoint():
                 "args": [[]],
                 "kwargs": {
                     "offset": offset,
-                    "limit": limit
+                    "limit": limit,
+                    "fields": ["id", "product_id", "location_id", "product_min_qty", "product_max_qty"]
                 }
             }
         }
@@ -54,7 +58,6 @@ def get_stock_warehouse_orderpoint():
             return jsonify({"error": json_res["error"]}), 500
 
         return jsonify(json_res.get("result", []))
-
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
